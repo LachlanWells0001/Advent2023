@@ -18,9 +18,6 @@ int main(){
     while(fgets(str, sizeof str, file) != NULL){
         int possible = 1;
         int amount = 0;
-        int red = 0;
-        int green = 0;
-        int blue = 0;
 
         char* pointer;
 
