@@ -16,8 +16,7 @@ int main(){
     }
 
     while(fgets(str, sizeof str, file) != NULL){
-        int possible = 1;
-        int previous = 0;
+        int amount = 0;
         int red = 0;
         int green = 0;
         int blue = 0;
@@ -26,24 +25,18 @@ int main(){
 
         for(pointer = strtok(str, " :,;\n"); pointer != NULL; pointer = strtok(NULL, " :,;\n")){
             if(pointer[0] - '0' < 10){
-                previous = atoi(pointer);
+                amount = atoi(pointer);
 
             }
             else{
                 switch(pointer[0]){
-                    case 'r': if(previous > 12) {possible = 0;} break;
-                    case 'g': if(previous > 13) {possible = 0;} break;
-                    case 'b': if(previous > 14) {possible = 0;} break;
+                    case 'r': if(amount > red) {red = amount;} break;
+                    case 'g': if(amount > green) {green = amount;} break;
+                    case 'b': if(amount > blue) {blue = amount;} break;
                 }
             }
-            //If that number of balls isn't possible skip the rest of the line
-            if(!possible){
-                break;
-            }
         }
-        if(possible){
-            answer += id;
-        }
+        answer += (red * green * blue);
         id++; 
     }
 
